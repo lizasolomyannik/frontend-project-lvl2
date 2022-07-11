@@ -6,3 +6,6 @@ publish:
 
 gendiff:
 	node bin/gendiff.js
+
+getDiff:
+	node bin/diff.js
