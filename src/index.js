@@ -5,7 +5,7 @@ const getDiff = (filepath1, filepath2) => {
   const file1 = JSON.parse(fs.readFileSync(filepath1));
   const file2 = JSON.parse(fs.readFileSync(filepath2));
   const merged = { ...file1, ...file2 };
-  const result = {};
+  let result = {};
   const allKeys = Object.keys(merged);
   allKeys.forEach((key) => {
     if (_.has(file1, key) && _.has(file2, key)) {
@@ -21,8 +21,9 @@ const getDiff = (filepath1, filepath2) => {
       result[`+ ${key}`] = file2[key];
     }
   });
+  result = JSON.stringify(result, undefined, ' ');
   // eslint-disable-next-line no-console
-  console.log(JSON.stringify(result, undefined, ' '));
+  console.log(result.replace(/["']/g, ''));
 };
 
 export default getDiff;
