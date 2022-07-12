@@ -6,7 +6,7 @@ const getDiff = (filepath1, filepath2) => {
   const file2 = JSON.parse(fs.readFileSync(filepath2));
   const merged = { ...file1, ...file2 };
   let result = {};
-  const allKeys = Object.keys(merged);
+  const allKeys = _.sortBy(Object.keys(merged));
   allKeys.forEach((key) => {
     if (_.has(file1, key) && _.has(file2, key)) {
       if (file1[key] === file2[key]) {
