@@ -22,8 +22,7 @@ const getDiff = (filepath1, filepath2) => {
     }
   });
   result = JSON.stringify(result, undefined, ' ');
-  // eslint-disable-next-line no-console
-  console.log(result.replace(/["']/g, ''));
+  return result.replace(/["']/g, '');
 };
 
 export default getDiff;
