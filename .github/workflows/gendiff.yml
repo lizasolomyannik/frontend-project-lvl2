@@ -4,4 +4,5 @@ jobs:
   get-flat-diff:
     runs-on: ubuntu-latest
     steps:
+      - run: make install
       - run: make test
