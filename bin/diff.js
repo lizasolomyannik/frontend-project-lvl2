@@ -2,4 +2,4 @@
 
 import diff from '../src';
 
-console.log(diff());
+diff();

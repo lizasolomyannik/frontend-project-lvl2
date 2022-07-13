@@ -1,6 +1,7 @@
 env:
   browser: true
   es2021: true
+  "jest": true
 extends:
   - airbnb-base
 parserOptions:
@@ -12,5 +13,6 @@ rules: {
   "jest/no-focused-tests": "error",
   "jest/no-identical-title": "error",
   "jest/prefer-to-have-length": "warn",
-  "jest/valid-expect": "error"
+  "jest/valid-expect": "error",
+  "import/extensions": 0
 }

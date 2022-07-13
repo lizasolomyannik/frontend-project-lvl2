@@ -4,7 +4,7 @@ test('compare flat JSON files', () => {
   const path1 = '__fixtures__/file1.json';
   const path2 = '__fixtures__/file2.json';
   const result = getDiff(path1, path2);
-  const expectedResult =
+  const expectedResult = // eslint-disable-line operator-linebreak
   `{
  - follow: false,
  host: hexlet.io,
