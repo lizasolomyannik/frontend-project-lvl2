@@ -1,0 +1,9 @@
+name: gendiff
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: make install
+      - run: make lint
+      - run: make test
