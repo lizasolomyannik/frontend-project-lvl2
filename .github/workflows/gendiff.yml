@@ -36,11 +36,15 @@ jobs:
       - run: make install
       - run: make lint
       - run: make test
+  coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      # Node versions list
+      matrix:
+        node-version: [14.x]
+    steps:
       - name: Test & publish code coverage
-        # Publish code coverage on Code Climate
-        # https://github.com/paambaati/codeclimate-action
         uses: paambaati/codeclimate-action@v3
-        # Add Code Climate secret key
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_KEY }}
         with:
