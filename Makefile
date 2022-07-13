@@ -9,3 +9,6 @@ gendiff:
 
 getDiff:
 	node bin/diff.js
+
+lint:
+	npx eslint .
