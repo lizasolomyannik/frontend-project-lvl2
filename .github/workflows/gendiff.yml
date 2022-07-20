@@ -36,13 +36,6 @@ jobs:
       - run: make install
       - run: make lint
       - run: make test
-  coverage:
-    runs-on: ubuntu-latest
-    strategy:
-      # Node versions list
-      matrix:
-        node-version: [14.x]
-    steps:
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
@@ -50,3 +43,17 @@ jobs:
         with:
           coverageCommand: make test-coverage
           debug: true
+  # coverage:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     # Node versions list
+  #     matrix:
+  #       node-version: [14.x]
+  #   steps:
+  #     - name: Test & publish code coverage
+  #       uses: paambaati/codeclimate-action@v3.0.0
+  #       env:
+  #         CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_KEY }}
+  #       with:
+  #         coverageCommand: make test-coverage
+  #         debug: true
