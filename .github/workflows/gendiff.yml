@@ -44,9 +44,9 @@ jobs:
         node-version: [14.x]
     steps:
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v3
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_KEY }}
         with:
-          coverageCommand: make test-coverage
+          coverageCommand: NODE_OPTIONS=--experimental-vm-modules npm test -- --coverage --coverageProvider=v8
           debug: true
