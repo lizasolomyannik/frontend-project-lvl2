@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals';
 import getDiff from '../src/index.js';
+import parseFile from '../src/parsers.js';
 
 test('compare flat JSON files', () => {
   const path1 = '__fixtures__/file1.json';
@@ -31,4 +32,10 @@ test('compare flat YAML files', () => {
  + verbose: true
 }`;
   expect(result).toBe(expectedResult);
+});
+
+test('unknown file formats', () => {
+  expect(() => {
+    parseFile('example.jpg');
+  }).toThrow('Unknown file format!');
 });
