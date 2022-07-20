@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import * as fs from 'fs';
+import parseFile from './parsers.js';
 
 const getDiff = (filepath1, filepath2) => {
-  const file1 = JSON.parse(fs.readFileSync(filepath1));
-  const file2 = JSON.parse(fs.readFileSync(filepath2));
+  const file1 = parseFile(filepath1);
+  const file2 = parseFile(filepath2);
   const merged = { ...file1, ...file2 };
   let result = {};
   const allKeys = _.sortBy(Object.keys(merged));
