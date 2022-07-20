@@ -3,13 +3,13 @@ import path from 'path';
 import * as yaml from 'js-yaml';
 
 const parseFile = (filepath) => {
-  let file;
   if (path.extname(filepath) === '.json') {
-    file = JSON.parse(fs.readFileSync(filepath));
-  } else if ((path.extname(filepath) === '.yaml') || (path.extname(filepath) === '.yml')) {
-    file = yaml.load(fs.readFileSync(filepath));
+    return JSON.parse(fs.readFileSync(filepath));
   }
-  return file;
+  if ((path.extname(filepath) === '.yaml') || (path.extname(filepath) === '.yml')) {
+    return yaml.load(fs.readFileSync(filepath));
+  }
+  throw Error('Unknown file format!');
 };
 
 export default parseFile;
