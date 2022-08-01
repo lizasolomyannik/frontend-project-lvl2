@@ -1,5 +1,3 @@
-// import _ from 'lodash';
-
 const getKeyName = (obj) => obj.keyName;
 const getKeyType = (obj) => obj.type;
 const getKeyValue = (obj, value) => obj[value];
@@ -10,10 +8,8 @@ const stringify = (data, depth) => {
   if (typeof data !== 'object' || data === null) {
     return `${data}`;
   }
-  // const strArray =
-  // Object.entries(data).map(([key, value]) => `${key}: ${stringify(value, depth + 1)}`);
-  const strArray = Object.entries(data).map(([key, value]) => `{\n${' '.repeat(spacesCount * depth + 2)}${key}: ${stringify(value, depth + 1)}\n${' '.repeat(spacesCount * depth - 2)}  }`);
-  const finalString = strArray.join('\n');
+  const strArray = Object.entries(data).map(([key, value]) => `${' '.repeat(spacesCount * depth)}  ${key}: ${stringify(value, depth + 1)}`);
+  const finalString = `{  \n${strArray.join('\n')}\n${' '.repeat(spacesCount * depth - 2)}}`;
   return finalString;
 };
 
@@ -35,7 +31,7 @@ const stylish = (data) => {
     }
     if (type === 'nested') {
       const arr = node.children.flatMap((child) => iter(child, depth + 1));
-      return `${' '.repeat(spacesCount * depth - 2)}  ${getKeyName(node)}: {\n${arr.join('\n')}\n${' '.repeat(spacesCount * depth - 2)}`;
+      return `${' '.repeat(spacesCount * depth - 2)}  ${getKeyName(node)}: {\n${arr.join('\n')}\n${' '.repeat(spacesCount * depth - 2)}  }`;
     }
     return `${' '.repeat(spacesCount * depth - 2)}  ${name}: ${stringify((getKeyValue(node, 'value')), depth)}`;
   };
