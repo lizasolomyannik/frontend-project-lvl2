@@ -8,13 +8,12 @@ const stringify = (data, depth) => {
   if (typeof data !== 'object' || data === null) {
     return `${data}`;
   }
-  const strArray = Object.entries(data).map(([key, value]) => `${' '.repeat(spacesCount * depth)}  ${key}: ${stringify(value, depth + 1)}`);
-  const finalString = `{  \n${strArray.join('\n')}\n${' '.repeat(spacesCount * depth - 2)}}`;
+  const strArray = Object.entries(data).map(([key, value]) => `${' '.repeat(spacesCount * depth + 2)}  ${key}: ${stringify(value, depth + 1)}`);
+  const finalString = `{\n${strArray.join('\n')}\n${' '.repeat(spacesCount * depth)}}`;
   return finalString;
 };
 
 const stylish = (data) => {
-  // const spacesCount = 4;
   const iter = (node, depth) => {
     const name = getKeyName(node);
     const type = getKeyType(node);

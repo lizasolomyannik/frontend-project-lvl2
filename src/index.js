@@ -31,6 +31,4 @@ const getDiff = (filepath1, filepath2) => {
   return stylish(result);
 };
 
-console.log(getDiff('__fixtures__/file1.json', '__fixtures__/file2.json'));
-
 export default getDiff;
