@@ -14,6 +14,7 @@ const YAMLpath2 = 'file2.yaml';
 
 const stylishExpectedResult = readTextFile('stylishExpectedResult');
 const plainExpectedResult = readTextFile('plainExpectedResult').trim();
+const JSONExpectedResult = readTextFile('jsonExpectedResult');
 
 test('stylish compare JSON files', () => {
   const stylishResult = genDiff(JSONpath1, JSONpath2, 'stylish');
@@ -33,6 +34,16 @@ test('plain compare JSON files', () => {
 test('plain compare YAML files', () => {
   const plainResult = genDiff(YAMLpath1, YAMLpath2, 'plain');
   expect(plainResult).toBe(plainExpectedResult);
+});
+
+test('json compare JSON files', () => {
+  const JSONResult = genDiff(JSONpath1, JSONpath2, 'json');
+  expect(JSONResult).toBe(JSONExpectedResult);
+});
+
+test('json compare YAML files', () => {
+  const JSONResult = genDiff(YAMLpath1, YAMLpath2, 'json');
+  expect(JSONResult).toBe(JSONExpectedResult);
 });
 
 test('unknown file formats', () => {
