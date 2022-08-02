@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import parseFile from './parsers.js';
-import stylish from './formatter.js';
 
 const nestedDiff = (obj1, obj2) => {
   const keys = _.sortBy([...new Set([...Object.keys(obj1), ...Object.keys(obj2)])]);
@@ -28,7 +27,7 @@ const getDiff = (filepath1, filepath2) => {
   const file1 = parseFile(filepath1);
   const file2 = parseFile(filepath2);
   const result = nestedDiff(file1, file2);
-  return stylish(result);
+  return result;
 };
 
 export default getDiff;

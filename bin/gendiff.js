@@ -10,7 +10,7 @@ program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
   .version('0.0.1')
-  .option('-f, --format <type>', 'output format', 'default: stylish')
+  .option('-f, --format <type>', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
     console.log(getDiff(filepath1, filepath2)); // eslint-disable-line no-console
