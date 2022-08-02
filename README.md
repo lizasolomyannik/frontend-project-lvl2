@@ -7,3 +7,5 @@ ___
 [![asciicast](https://asciinema.org/a/508195.svg)](https://asciinema.org/a/508195)
 ### Compare flat .yaml files
 [![asciicast](https://asciinema.org/a/509809.svg)](https://asciinema.org/a/509809)
+### Compare nested files (stylish and plain output formats)
+[![asciicast](https://asciinema.org/a/xYrFbk6496HWtgNOM2DiQQX6X.svg)](https://asciinema.org/a/xYrFbk6496HWtgNOM2DiQQX6X)
