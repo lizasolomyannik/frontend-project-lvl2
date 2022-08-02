@@ -11,7 +11,6 @@ const readTextFile = (filename) => fs.readFileSync(getFixturePath(filename), 'ut
 
 const stylishExpectedResult = readTextFile('stylishExpectedResult');
 const plainExpectedResult = readTextFile('plainExpectedResult').trim();
-console.log(plainExpectedResult);
 
 test('stylish compare JSON files', () => {
   const path1 = getFixturePath('file1.json');
@@ -31,7 +30,6 @@ test('plain compare JSON files', () => {
   const path1 = getFixturePath('file1.json');
   const path2 = getFixturePath('file2.json');
   const plainResult = plain(getDiff(path1, path2));
-  console.log(plainResult);
   expect(plainResult).toBe(plainExpectedResult);
 });
 
