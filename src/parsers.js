@@ -1,8 +1,16 @@
 import * as fs from 'fs';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import * as path from 'path';
 import * as yaml from 'js-yaml';
 
-const getFixturePath = (filename) => path.join('__fixtures__', filename);
+const getFixturePath = (filename) => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const fixturePath = path.join(__dirname, '..', '__fixtures__', filename);
+  return fixturePath;
+};
+
+console.log(getFixturePath('file1.json'));
 
 const parseFile = (filepath) => {
   const fixturePath = getFixturePath(filepath);
