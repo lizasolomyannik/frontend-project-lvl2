@@ -1,11 +1,9 @@
 import * as fs from 'fs';
-import { fileURLToPath } from 'url';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
 
 const getFixturePath = (filename) => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
+  const __dirname = path.dirname(filename);
   const fixturePath = path.join(__dirname, '..', '__fixtures__', filename);
   return fixturePath;
 };
