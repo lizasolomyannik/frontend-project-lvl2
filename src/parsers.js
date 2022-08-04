@@ -3,8 +3,7 @@ import * as path from 'path';
 import * as yaml from 'js-yaml';
 
 const getFixturePath = (filename) => {
-  const __dirname = path.dirname(filename);
-  const fixturePath = path.join(__dirname, '..', '__fixtures__', filename);
+  const fixturePath = path.join('__fixtures__', filename);
   return fixturePath;
 };
 
