@@ -9,3 +9,5 @@ ___
 [![asciicast](https://asciinema.org/a/509809.svg)](https://asciinema.org/a/509809)
 ### Compare nested files (stylish and plain output formats)
 [![asciicast](https://asciinema.org/a/xYrFbk6496HWtgNOM2DiQQX6X.svg)](https://asciinema.org/a/xYrFbk6496HWtgNOM2DiQQX6X)
+### Compare nested files (json output format)
+[![asciicast](https://asciinema.org/a/RAIJfsTbHHq5Oo7urnILsJTvd.svg)](https://asciinema.org/a/RAIJfsTbHHq5Oo7urnILsJTvd)
