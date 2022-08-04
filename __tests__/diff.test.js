@@ -1,20 +1,16 @@
-import path from 'path';
 import * as fs from 'fs';
 import { expect, test } from '@jest/globals';
-import genDiff from '../index.js';
+import genDiff from '../src/index.js';
 import parseFile from '../src/parsers.js';
 
-const getFixturePath = (filename) => path.join('__fixtures__', filename);
-const readTextFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const JSONpath1 = '__fixtures__/file1.json';
+const JSONpath2 = '__fixtures__/file2.json';
+const YAMLpath1 = '__fixtures__/file1.yaml';
+const YAMLpath2 = '__fixtures__/file2.yaml';
 
-const JSONpath1 = 'file1.json';
-const JSONpath2 = 'file2.json';
-const YAMLpath1 = 'file1.yaml';
-const YAMLpath2 = 'file2.yaml';
-
-const stylishExpectedResult = readTextFile('stylishExpectedResult');
-const plainExpectedResult = readTextFile('plainExpectedResult').trim();
-const JSONExpectedResult = readTextFile('jsonExpectedResult');
+const stylishExpectedResult = fs.readFileSync('__fixtures__/stylishExpectedResult', 'utf-8');
+const plainExpectedResult = fs.readFileSync('__fixtures__/plainExpectedResult', 'utf-8');
+const JSONExpectedResult = fs.readFileSync('__fixtures__/jsonExpectedResult', 'utf-8');
 
 test('stylish compare JSON files', () => {
   const stylishResult = genDiff(JSONpath1, JSONpath2, 'stylish');
