@@ -1,7 +1,7 @@
 import path from 'path';
 import * as fs from 'fs';
 import { expect, test } from '@jest/globals';
-import genDiff from '../src/formatters/index.js';
+import genDiff from '../index.js';
 import parseFile from '../src/parsers.js';
 
 const getFixturePath = (filename) => path.join('__fixtures__', filename);
