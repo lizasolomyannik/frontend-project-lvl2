@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { expect, test } from '@jest/globals';
 import genDiff from '../src/index.js';
-import parseFile from '../src/parsers.js';
+import parseFile from '../src/parsers/parser.js';
 
 const JSONpath1 = '__fixtures__/file1.json';
 const JSONpath2 = '__fixtures__/file2.json';

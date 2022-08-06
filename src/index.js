@@ -1,15 +1,13 @@
-import getDiff from './difftree.js';
-import stylish from './formatters/stylish.js';
-import plain from './formatters/plain.js';
+import formatData from './formatters/getFormat.js';
+import getDiffTree from './difftree.js';
+import parseFile from './parsers/parser.js';
 
-const genDiff = (filepath1, filepath2, formatter) => {
-  if (formatter === 'plain') {
-    return plain(getDiff(filepath1, filepath2));
-  }
-  if (formatter === 'json') {
-    return JSON.stringify(getDiff(filepath1, filepath2));
-  }
-  return stylish(getDiff(filepath1, filepath2));
+const genDiff = (file1, file2, format) => {
+  const data1 = parseFile(file1);
+  const data2 = parseFile(file2);
+  const result = getDiffTree(data1, data2);
+  const formattedResult = formatData(result, format);
+  return formattedResult;
 };
 
 export default genDiff;
