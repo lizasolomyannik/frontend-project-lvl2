@@ -2,9 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
 
-const getFileType = (filename) => path.extname(filename);
+const getDataType = (filename) => path.extname(filename);
 
-const readFile = (file, type) => {
+const readData = (file, type) => {
   if (type === '.json') {
     return JSON.parse(fs.readFileSync(file));
   }
@@ -14,4 +14,4 @@ const readFile = (file, type) => {
   throw Error('Unknown file format!');
 };
 
-export { getFileType, readFile };
+export { getDataType, readData };
