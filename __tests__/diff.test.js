@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import { expect, test } from '@jest/globals';
 import genDiff from '../src/index.js';
-import parseData from '../src/parser.js';
 
 const JSONpath1 = '__fixtures__/file1.json';
 const JSONpath2 = '__fixtures__/file2.json';
@@ -42,8 +41,8 @@ test('json compare YAML files', () => {
   expect(JSONResult).toBe(JSONExpectedResult);
 });
 
-test('unknown file formats', () => {
+test('unknown format', () => {
   expect(() => {
-    parseData('example.jpg');
-  }).toThrow('Unknown file format!');
+    genDiff('file1.jpg', 'file2.yaml', 'plain');
+  }).toThrow('Unknown format!');
 });

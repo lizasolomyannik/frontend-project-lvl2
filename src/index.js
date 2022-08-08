@@ -1,11 +1,31 @@
+import * as fs from 'fs';
+import * as path from 'path';
+import * as yaml from 'js-yaml';
+
 import formatData from './formatters/getFormat.js';
 import getDiffTree from './difftree.js';
-import parseData from './parser.js';
 
-const genDiff = (file1, file2, format) => {
-  const data1 = parseData(file1);
-  const data2 = parseData(file2);
-  const result = getDiffTree(data1, data2);
+const getDataType = (data) => path.extname(data);
+
+const readData = (data, type) => {
+  if (type === '.json') {
+    return JSON.parse(fs.readFileSync(data));
+  }
+  if (type === '.yaml' || type === '.yml') {
+    return yaml.load(fs.readFileSync(data));
+  }
+  throw Error('Unknown format!');
+};
+
+const parseData = (data) => {
+  const type = getDataType(data);
+  return readData(data, type);
+};
+
+const genDiff = (data1, data2, format) => {
+  const firstData = parseData(data1);
+  const secondData = parseData(data2);
+  const result = getDiffTree(firstData, secondData);
   const formattedResult = formatData(result, format);
   return formattedResult;
 };
