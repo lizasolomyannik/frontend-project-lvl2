@@ -40,9 +40,3 @@ test('json compare YAML files', () => {
   const JSONResult = genDiff(YAMLpath1, YAMLpath2, 'json');
   expect(JSONResult).toBe(JSONExpectedResult);
 });
-
-test('unknown format', () => {
-  expect(() => {
-    genDiff('file1.jpg', 'file2.yaml', 'plain');
-  }).toThrow('Unknown format!');
-});
