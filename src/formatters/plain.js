@@ -1,9 +1,5 @@
 import _ from 'lodash';
 
-const getKeyName = (obj) => obj.keyName;
-const getKeyType = (obj) => obj.type;
-const getKeyValue = (obj, value) => obj[value];
-
 const stringify = (data) => {
   if (_.isObject(data)) {
     return '[complex value]';
@@ -16,27 +12,27 @@ const stringify = (data) => {
 
 const plain = (data) => {
   const iter = (node, prevKey = '') => {
-    const name = getKeyName(node);
-    const type = getKeyType(node);
+    const name = node.keyName;
+    const nodeType = node.type;
     const fullName = prevKey ? `${prevKey}.${name}` : `${name}`;
-    if (type === 'deleted') {
+    if (nodeType === 'deleted') {
       return `Property '${fullName}' was removed`;
     }
-    if (type === 'added') {
-      return `Property '${fullName}' was added with value: ${stringify(getKeyValue(node, 'value2'))}`;
+    if (nodeType === 'added') {
+      return `Property '${fullName}' was added with value: ${stringify(node.value2)}`;
     }
-    if (type === 'changed') {
-      return `Property '${fullName}' was updated. From ${stringify(getKeyValue(node, 'value1'))} to ${stringify(getKeyValue(node, 'value2'))}`;
+    if (nodeType === 'changed') {
+      return `Property '${fullName}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
     }
-    if (type === 'nested') {
+    if (nodeType === 'nested') {
       const arr = node.children.flatMap((child) => iter(child, fullName));
       return `${arr.join('\n')}`;
     }
-    return '';
+    return [];
   };
   const resultArray = data.flatMap((node) => iter(node));
   const resultString = `${resultArray.join('\n')}`;
-  return resultString.replace(/(^[ \t]*\n)/gm, '');
+  return resultString;
 };
 
 export default plain;

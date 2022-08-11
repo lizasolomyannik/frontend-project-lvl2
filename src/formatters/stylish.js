@@ -1,8 +1,5 @@
-const getKeyName = (obj) => obj.keyName;
-const getKeyType = (obj) => obj.type;
-const getKeyValue = (obj, value) => obj[value];
-
 const spacesCount = 4;
+const getIndent = (depth) => ' '.repeat(spacesCount * depth - 2);
 
 const stringify = (data, depth) => {
   if (typeof data !== 'object' || data === null) {
@@ -15,24 +12,24 @@ const stringify = (data, depth) => {
 
 const stylish = (data) => {
   const iter = (node, depth) => {
-    const name = getKeyName(node);
-    const type = getKeyType(node);
-    if (type === 'deleted') {
-      return `${' '.repeat(spacesCount * depth - 2)}- ${name}: ${stringify((getKeyValue(node, 'value1')), depth)}`;
+    const name = node.keyName;
+    const nodeType = node.type;
+    if (nodeType === 'deleted') {
+      return `${getIndent(depth)}- ${name}: ${stringify(node.value1, depth)}`;
     }
-    if (type === 'added') {
-      return `${' '.repeat(spacesCount * depth - 2)}+ ${name}: ${stringify((getKeyValue(node, 'value2')), depth)}`;
+    if (nodeType === 'added') {
+      return `${getIndent(depth)}+ ${name}: ${stringify(node.value2, depth)}`;
     }
-    if (type === 'changed') {
-      const str1 = `${' '.repeat(spacesCount * depth - 2)}- ${name}: ${stringify((getKeyValue(node, 'value1')), depth)}`;
-      const str2 = `${' '.repeat(spacesCount * depth - 2)}+ ${name}: ${stringify((getKeyValue(node, 'value2')), depth)}`;
-      return `${str1}\n${str2}`;
+    if (nodeType === 'changed') {
+      const str1 = `${getIndent(depth)}- ${name}: ${stringify(node.value1, depth)}`;
+      const str2 = `${getIndent(depth)}+ ${name}: ${stringify(node.value2, depth)}`;
+      return [str1, str2];
     }
-    if (type === 'nested') {
+    if (nodeType === 'nested') {
       const arr = node.children.flatMap((child) => iter(child, depth + 1));
-      return `${' '.repeat(spacesCount * depth - 2)}  ${getKeyName(node)}: {\n${arr.join('\n')}\n${' '.repeat(spacesCount * depth - 2)}  }`;
+      return `${getIndent(depth)}  ${name}: {\n${arr.join('\n')}\n${getIndent(depth)}  }`;
     }
-    return `${' '.repeat(spacesCount * depth - 2)}  ${name}: ${stringify((getKeyValue(node, 'value')), depth)}`;
+    return `${getIndent(depth)}  ${name}: ${stringify(node.value, depth)}`;
   };
   const resultArray = data.flatMap((node) => iter(node, 1));
   const resultString = `{\n${resultArray.join('\n')}\n}`;
