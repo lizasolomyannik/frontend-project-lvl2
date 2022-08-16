@@ -11,32 +11,27 @@ const stylishExpectedResult = fs.readFileSync('__fixtures__/stylishExpectedResul
 const plainExpectedResult = fs.readFileSync('__fixtures__/plainExpectedResult', 'utf-8');
 const JSONExpectedResult = fs.readFileSync('__fixtures__/jsonExpectedResult', 'utf-8');
 
-test('stylish compare JSON files', () => {
-  const stylishResult = genDiff(JSONpath1, JSONpath2, 'stylish');
-  expect(stylishResult).toBe(stylishExpectedResult);
-});
-
-test('stylish compare YAML files', () => {
-  const stylishResult = genDiff(YAMLpath1, YAMLpath2, 'stylish');
-  expect(stylishResult).toBe(stylishExpectedResult);
-});
-
-test('plain compare JSON files', () => {
-  const plainResult = genDiff(JSONpath1, JSONpath2, 'plain');
-  expect(plainResult).toBe(plainExpectedResult);
-});
-
-test('plain compare YAML files', () => {
-  const plainResult = genDiff(YAMLpath1, YAMLpath2, 'plain');
-  expect(plainResult).toBe(plainExpectedResult);
-});
-
-test('json compare JSON files', () => {
-  const JSONResult = genDiff(JSONpath1, JSONpath2, 'json');
-  expect(JSONResult).toBe(JSONExpectedResult);
-});
-
-test('json compare YAML files', () => {
-  const JSONResult = genDiff(YAMLpath1, YAMLpath2, 'json');
-  expect(JSONResult).toBe(JSONExpectedResult);
+test.each([
+  {
+    a: JSONpath1, b: JSONpath2, format: 'stylish', result: stylishExpectedResult,
+  },
+  {
+    a: YAMLpath1, b: YAMLpath2, format: 'stylish', result: stylishExpectedResult,
+  },
+  {
+    a: JSONpath1, b: JSONpath2, format: 'plain', result: plainExpectedResult,
+  },
+  {
+    a: YAMLpath1, b: YAMLpath2, format: 'plain', result: plainExpectedResult,
+  },
+  {
+    a: JSONpath1, b: JSONpath2, format: 'json', result: JSONExpectedResult,
+  },
+  {
+    a: YAMLpath1, b: YAMLpath2, format: 'json', result: JSONExpectedResult,
+  },
+])('gendiff $a $b $format', ({
+  a, b, format, result,
+}) => {
+  expect(genDiff(a, b, format)).toBe(result);
 });

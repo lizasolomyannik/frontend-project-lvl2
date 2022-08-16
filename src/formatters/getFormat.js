@@ -3,13 +3,16 @@ import stylish from './stylish.js';
 import jsonFormatter from './json.js';
 
 const formatData = (data, format) => {
-  if (format === 'plain') {
-    return plain(data);
+  switch (format) {
+    case 'plain':
+      return plain(data);
+    case 'json':
+      return jsonFormatter(data);
+    case 'stylish':
+      return stylish(data);
+    default:
+      throw new Error(`Unknown format: ${format}`);
   }
-  if (format === 'json') {
-    return jsonFormatter(data);
-  }
-  return stylish(data);
 };
 
 export default formatData;

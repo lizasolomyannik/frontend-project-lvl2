@@ -7,7 +7,7 @@ const parseData = (data, type) => {
   if (type === 'yaml' || type === 'yml') {
     return yaml.load(data);
   }
-  throw Error('Unknown format!');
+  throw Error(`Unknown format: ${type}!`);
 };
 
 export default parseData;
