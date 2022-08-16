@@ -9,7 +9,7 @@ const getDataType = (data) => path.extname(data).slice(1);
 
 const readData = (data) => fs.readFileSync(data);
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const type1 = getDataType(filepath1);
   const type2 = getDataType(filepath2);
   const data1 = readData(filepath1);
